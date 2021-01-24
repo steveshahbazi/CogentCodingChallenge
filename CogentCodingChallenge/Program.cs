@@ -7,23 +7,14 @@ namespace CogentCodingChallenge
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to my coding challenge to find duplicate files!");
             Console.WriteLine("The search is based on the file name, last write time, size, and the actual content. To specify the search mode please " +
                 "choose a combination of the following terms: [name, date, size, content] (e.g., 'name content')");
 
-            var scanMode = ScanMode.None;
+            var scanMode = GetScanMode(Console.ReadLine().ToLower());
             string input;
-            input = Console.ReadLine().ToLower();
-            if (input.Contains("name"))
-                scanMode |= ScanMode.Name;
-            if (input.Contains("date"))
-                scanMode |= ScanMode.Date; 
-            if (input.Contains("size"))
-                scanMode |= ScanMode.Size; 
-            if (input.Contains("content"))
-                scanMode |= ScanMode.Content;
             do
             {
                 Console.WriteLine("Please enter the path you want to search for duplicate files, e.g., 'c:\\root\\my files', or 'quit' to exit.");
@@ -45,6 +36,20 @@ namespace CogentCodingChallenge
             // Keep the console window open in debug mode.  
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
+        }
+
+        internal static ScanMode GetScanMode(string input)
+        {
+            var scanMode = ScanMode.None;
+            if (input.Contains("name"))
+                scanMode |= ScanMode.Name;
+            if (input.Contains("date"))
+                scanMode |= ScanMode.Date;
+            if (input.Contains("size"))
+                scanMode |= ScanMode.Size;
+            if (input.Contains("content"))
+                scanMode |= ScanMode.Content;
+            return scanMode;
         }
 
         /// <summary>

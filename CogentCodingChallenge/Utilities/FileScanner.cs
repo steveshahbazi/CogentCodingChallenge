@@ -13,7 +13,7 @@ namespace CogentCodingChallenge.Utilities
         None = 0,
         Name = 1,
         Size = 2,
-        Date = 3,
+        Date = 4,
         Content = 8
     }
     public class FileScanner<T>
